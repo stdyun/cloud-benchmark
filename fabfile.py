@@ -1,13 +1,11 @@
-#!/usr/bin/env python                                                          
-#coding:utf-8                                                                  
+#!/usr/bin/env python
+#coding:utf-8
 from __future__ import with_statement
-import sys                                                                     
-reload(sys)                                                                    
+import sys
+reload(sys)
 sys.setdefaultencoding("utf-8")
 
-from fabric.api import run
-
-from fabric.api import env,run
+from fabric.api import env,run,put,sudo
 
 def stdyun():
     env.hosts = ["stdyun-dev.com"]
@@ -17,9 +15,11 @@ def stdyun():
 def ps():
     run("ps aux | grep nginx")
 
-def perpare_env():
+def prepare_env():
     #run("./prepare_env.bash")
-    run("apt-get install puppet")
+    sudo("apt-get install puppet")
 
 def run_benchmark():
-    run("puppet apply cloud-benchmark.pp")
+    prepare_env()
+    put('benchmark.pp', 'benchmark.pp')
+    run("screen puppet apply benchmark.pp")

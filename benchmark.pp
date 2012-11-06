@@ -27,7 +27,7 @@ package {
 	    require => Exec['update'],
 }
 
-$dir = "/home/stdyun"
+$dir = "/home/xtao"
 exec { "clone_mbw":                                                                       
     command => "git clone https://github.com/raas/mbw.git", 
     creates => "${dir}/mbw",
