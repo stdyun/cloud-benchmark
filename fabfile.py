@@ -17,9 +17,11 @@ def ps():
 
 def prepare_env():
     put('prepare.sh', 'prepare.sh')
+    put('package.pp', 'package.pp')
     put('benchmark.pp', 'benchmark.pp')
     sudo("sh prepare.sh")
 
 def run_benchmark():
     prepare_env()
+    sudo("puppet apply package.pp")
     run("screen -m puppet apply benchmark.pp")
