@@ -35,7 +35,7 @@ exec { "clone_mbw":
                                                                                                                                                                                      
 exec { "mbw":    
     cwd => "${dir}/mbw",    
-    command => "make && ./mbw 16 > mbw.tmp",    
+    command => "make && ./mbw 16 > mbw-`date +%F-%H-%M-%S`.log",    
     require => exec["clone_mbw"],    
 }    
 
@@ -56,7 +56,7 @@ exec { "tar_unixbench":
 
 exec { "unixbench":
 	cwd => "${dir}/unixbench",
-	command => "ls && ./Run > unixbench.tmp",
+	command => "ls && ./Run > unixbench-`date +%F-%H-%M-%S`.log",
 	timeout => 0,
 	require => exec["tar_unixbench"],
 }
@@ -68,5 +68,5 @@ file { "${dir}/iozone":
 
 exec { "iozone":
 	cwd => "${dir}/iozone",
-	command => "iozone -Mcew -i0 -i1 -i2 -s4g -r256k -f iozone.tmp",
+	command => "iozone -Mcew -i0 -i1 -i2 -s4g -r256k -f iozone.tmp > iozone-`date +%F-%H-%M-%S`.log",
 }
