@@ -16,10 +16,10 @@ def ps():
     run("ps aux | grep nginx")
 
 def prepare_env():
-    #run("./prepare_env.bash")
-    sudo("apt-get install puppet")
+    put('prepare.sh', 'prepare.sh')
+    put('benchmark.pp', 'benchmark.pp')
+    sudo("sh prepare.sh")
 
 def run_benchmark():
     prepare_env()
-    put('benchmark.pp', 'benchmark.pp')
-    run("screen puppet apply benchmark.pp")
+    run("screen -m puppet apply benchmark.pp")
