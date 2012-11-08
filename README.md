@@ -7,9 +7,10 @@ cloud-benchmark is a tool to do benchmark at cloud computing years.
 * fab -H host ps
 
 ## Support OS:
+
 * Linux
-** Ubuntu
-** Debian
-** Centos
-** RHEL
-** Gentoo
+    * Ubuntu
+    * Debian
+    * Centos
+    * RHEL
+    * Gentoo
