@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 install_redhat() {
-    yum install puppet
+    yum -y install puppet
 }
 
 install_debian() {
-    apt-get install puppet
+    apt-get -y install puppet
 }
 
 install_gentoo() {
