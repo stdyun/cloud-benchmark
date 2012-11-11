@@ -30,9 +30,22 @@ file { "${dir}/iozone":
     before => Exec["iozone"],
 }
 
+$memory = inline_template("<%
+        mem,unit = scope.lookupvar('::memorysize').split
+        mem = mem.to_f
+        case unit
+        when nil:  mem *= (1<<0)
+        when 'kB': mem *= (1<<00)
+        when 'MB': mem *= (1<<10)
+        when 'GB': mem *= (1<<20)
+        when 'TB': mem *= (1<<30)
+        end
+        mem *= 2
+        %><%= mem.to_i %>")
+
 exec { "iozone":
     cwd => "${dir}/iozone",
-    command => "iozone -Mcew -i0 -i1 -i2 -s4g -r256k -f iozone.tmp > iozone-`date +%F-%H-%M-%S`.log",
+    command => "iozone -Mcew -i0 -i1 -i2 -s${memory} -r256k -f iozone.tmp > iozone-`date +%F-%H-%M-%S`.log",
 }
 
 exec { "wget_unixbench":
