@@ -1,0 +1,18 @@
+.container {
+  width: 950px;
+  margin: 0 auto;
+}
+.perf {
+  width: 600px;
+  margin: 0 auto;
+}
+.container h1 {
+  text-align: center;
+}
+footer {
+  text-align: center;
+}
+body {
+  font-family: "PT Serif", "Georgia", "Helvetica Neue", Arial, sans-serif;
+  background: #f5f9fc;
+}
