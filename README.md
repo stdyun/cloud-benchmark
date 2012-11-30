@@ -3,7 +3,7 @@ cloud-benchmark
 
 cloud-benchmark is a tool to do benchmark at cloud computing years.
 
-* sudo pip install fab
+* sudo pip install fabric
 * fab -H root@host run_benchmark
 
 ## Supported OS:
